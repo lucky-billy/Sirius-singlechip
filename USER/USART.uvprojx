@@ -369,7 +369,7 @@
               <MiscControls></MiscControls>
               <Define>STM32F40_41xxx,USE_STDPERIPH_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath>..\CORE;..\FWLIB\inc;..\FWLIB\STM32F4xx_StdPeriph_Driver\inc;..\SYSTEM\delay;..\SYSTEM\sys;..\SYSTEM\usart;..\USER;..\HARDWARE\LED;..\HARDWARE\BEEP;..\HARDWARE\PWM;..\HARDWARE\REMOTE;..\HARDWARE\HC05;..\HARDWARE\USART3;..\HARDWARE\TIMER</IncludePath>
+              <IncludePath>..\CORE;..\FWLIB\inc;..\FWLIB\STM32F4xx_StdPeriph_Driver\inc;..\SYSTEM\delay;..\SYSTEM\sys;..\SYSTEM\usart;..\USER;..\HARDWARE\LED;..\HARDWARE\BEEP;..\HARDWARE\PWM;..\HARDWARE\REMOTE;..\HARDWARE\HC05;..\HARDWARE\USART3;..\HARDWARE\TIMER;..\HARDWARE\BCOMPONENT</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -461,6 +461,11 @@
               <FileName>timer.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\HARDWARE\TIMER\timer.c</FilePath>
+            </File>
+            <File>
+              <FileName>bcomponent.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\BCOMPONENT\bcomponent.c</FilePath>
             </File>
           </Files>
         </Group>

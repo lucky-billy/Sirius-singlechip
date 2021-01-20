@@ -2,11 +2,11 @@
 #include "usart3.h"
 #include "stdarg.h"	 	 
 #include "stdio.h"	 	 
-#include "string.h"	  
-#include "timer.h"
+#include "string.h"
 
 // 串口发送缓存区 	
 __align(8) u8 USART3_TX_BUF[USART3_MAX_SEND_LEN]; 	// 发送缓冲,最大USART3_MAX_SEND_LEN字节
+
 #ifdef USART3_RX_EN   								// 如果使能了接收   	  
 // 串口接收缓存区 	
 u8 USART3_RX_BUF[USART3_MAX_RECV_LEN]; 				// 接收缓冲,最大USART3_MAX_RECV_LEN个字节.
@@ -17,7 +17,8 @@ u8 USART3_RX_BUF[USART3_MAX_RECV_LEN]; 				// 接收缓冲,最大USART3_MAX_RECV_LEN个
 // 接收到的数据状态
 // [15]:0,没有接收到数据;1,接收到了一批数据.
 // [14:0]:接收到的数据长度
-u16 USART3_RX_STA=0;   	 
+u16 USART3_RX_STA=0;
+
 void USART3_IRQHandler(void)
 {
 	u8 res;	    
@@ -41,6 +42,8 @@ void USART3_IRQHandler(void)
 	}
 }
 #endif	
+
+
 // 初始化IO 串口3
 // bound:波特率	  
 void usart3_init(u32 bound)
@@ -88,6 +91,7 @@ void usart3_init(u32 bound)
 	
 	USART3_RX_STA=0;										// 清零 
 }
+
 
 // 串口3,printf 函数
 // 确保一次发送数据不超过USART3_MAX_SEND_LEN字节

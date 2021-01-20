@@ -15,7 +15,7 @@ u8 HC05_Init(void)
 	
 	GPIO_InitTypeDef GPIO_InitStructure;
  
-	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOF|RCC_AHB1Periph_GPIOC, ENABLE);	// 使能GPIOC,GPIOF时钟
+	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOF | RCC_AHB1Periph_GPIOC, ENABLE);	// 使能GPIOC,GPIOF时钟
  
 	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0; 				// LED对应引脚
 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN;			// 普通输入模式
@@ -30,7 +30,7 @@ u8 HC05_Init(void)
 	GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_UP;			// 上拉
 	GPIO_Init(GPIOF, &GPIO_InitStructure); 					// 根据设定参数初始化PF6
 
-	GPIO_SetBits(GPIOF,GPIO_Pin_6);
+	GPIO_SetBits(GPIOF, GPIO_Pin_6);
  	
 	usart3_init(9600);	// 初始化串口3为:9600,波特率.
 	
@@ -65,7 +65,9 @@ u8 HC05_Init(void)
 	*/
 	
 	return 0;
-}	 
+}
+
+
 // 获取ATK-HC05模块的角色
 // 返回值:0,从机;1,主机;0XFF,获取失败.							  
 u8 HC05_Get_Role(void)
@@ -96,7 +98,9 @@ u8 HC05_Get_Role(void)
 	}
 	if(retry==0)temp=0XFF;	// 查询失败.
 	return temp;
-} 							   
+}
+
+
 // ATK-HC05设置命令
 // 此函数用于设置ATK-HC05,适用于仅返回OK应答的AT指令
 // atstr:AT指令串.比如:"AT+RESET"/"AT+UART=9600,0,0"/"AT+ROLE=0"等字符串
@@ -129,7 +133,9 @@ u8 HC05_Set_Cmd(u8* atstr)
 	}
 	if(retry==0)temp=0XFF;	// 设置失败.
 	return temp;
-} 
+}
+
+
 // 通过该函数,可以利用USMART,调试接在串口3上的ATK-HC05模块
 // str:命令串.(这里注意不再需要再输入回车符)
 void HC05_CFG_CMD(u8 *str)

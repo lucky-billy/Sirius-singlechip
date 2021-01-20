@@ -22,13 +22,13 @@ void Remote_Init(void)
 	GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_UP;			// 上拉
 	GPIO_Init(GPIOA, &GPIO_InitStructure);					// 初始化
 	
-	GPIO_PinAFConfig(GPIOA,GPIO_PinSource8,GPIO_AF_TIM1); 	// GPIOA8复用为TIM1
+	GPIO_PinAFConfig(GPIOA, GPIO_PinSource8, GPIO_AF_TIM1); // GPIOA8复用为TIM1
 	
 	TIM_TimeBaseStructure.TIM_Prescaler=167;  				// 预分频器,1M的计数频率,1us加1.	
 	TIM_TimeBaseStructure.TIM_CounterMode=TIM_CounterMode_Up;	// 向上计数模式
 	TIM_TimeBaseStructure.TIM_Period=10000;   				// 设定计数器自动重装值 最大10ms溢出  
 	TIM_TimeBaseStructure.TIM_ClockDivision=TIM_CKD_DIV1; 
-	TIM_TimeBaseInit(TIM1,&TIM_TimeBaseStructure); 
+	TIM_TimeBaseInit(TIM1, &TIM_TimeBaseStructure); 
   	  
  	// 初始化TIM2输入捕获参数
 	TIM1_ICInitStructure.TIM_Channel = TIM_Channel_1; 		// CC1S=01 	选择输入端 IC1映射到TI1上
@@ -63,7 +63,8 @@ void Remote_Init(void)
 u8 	RmtSta=0;	  	  
 u16 Dval;		// 下降沿时计数器的值
 u32 RmtRec=0;	// 红外接收到的数据	   		    
-u8  RmtCnt=0;	// 按键按下的次数	 
+u8  RmtCnt=0;	// 按键按下的次数
+
 // 定时器1溢出中断
 void TIM1_UP_TIM10_IRQHandler(void)
 {
@@ -82,7 +83,8 @@ void TIM1_UP_TIM10_IRQHandler(void)
 		}							    
 	}
 	TIM_ClearITPendingBit(TIM1,TIM_IT_Update);	// 清除中断标志位 
-} 
+}
+
 // 定时器1输入捕获中断服务程序	 
 void TIM1_CC_IRQHandler(void)
 { 		    	 
@@ -126,6 +128,7 @@ void TIM1_CC_IRQHandler(void)
 	}
 	TIM_ClearITPendingBit(TIM1,TIM_IT_CC1);  	// 清除中断标志位 
 }
+
 //处理红外键盘
 //返回值:
 //	 0,没有任何按键按下

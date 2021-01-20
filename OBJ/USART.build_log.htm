@@ -1,0 +1,95 @@
+<html>
+<body>
+<pre>
+<h1>礦ision Build Log</h1>
+<h2>Tool Versions:</h2>
+IDE-Version: μVision V5.15
+Copyright (C) 2015 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: min wending, 上海乾曜光学科技有限公司, LIC=----
+ 
+Tool Versions:
+Toolchain:       MDK-Lite  Version: 5.15.0
+Toolchain Path:  C:\Keil_v5\ARM\ARMCC\Bin
+C Compiler:      Armcc.exe V5.05 update 2 (build 169)
+Assembler:       Armasm.exe V5.05 update 2 (build 169)
+Linker/Locator:  ArmLink.exe V5.05 update 2 (build 169)
+Library Manager: ArmAr.exe V5.05 update 2 (build 169)
+Hex Converter:   FromElf.exe V5.05 update 2 (build 169)
+CPU DLL:         SARMCM3.DLL V5.15.0
+Dialog DLL:      DCM.DLL V1.13.2.0
+Target DLL:      STLink\ST-LINKIII-KEIL_SWO.dll V2.0.15.0_KEIL
+Dialog DLL:      TCM.DLL V1.14.5.0
+ 
+<h2>Project:</h2>
+D:\Qt\Serialport\USER\USART.uvprojx
+Project File Date:  01/18/2021
+
+<h2>Output:</h2>
+*** Using Compiler 'V5.05 update 2 (build 169)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
+Rebuild target 'USART'
+compiling main.c...
+main.c(110): warning:  #177-D: variable "len" was declared but never referenced
+                        u8 len = USART_RX_STA & 0x3fff; // ?玫酱舜谓??盏降??莩ざ?
+main.c: 1 warning, 0 errors
+compiling stm32f4xx_it.c...
+compiling system_stm32f4xx.c...
+compiling led.c...
+..\HARDWARE\LED\led.c(20): warning:  #1-D: last line of file ends without a newline
+  }
+..\HARDWARE\LED\led.c: 1 warning, 0 errors
+compiling beep.c...
+..\HARDWARE\BEEP\beep.c(20): warning:  #1-D: last line of file ends without a newline
+  }
+..\HARDWARE\BEEP\beep.c: 1 warning, 0 errors
+compiling remote.c...
+..\HARDWARE\REMOTE\remote.c(157): warning:  #1-D: last line of file ends without a newline
+  }
+..\HARDWARE\REMOTE\remote.c: 1 warning, 0 errors
+compiling hc05.c...
+..\HARDWARE\HC05\hc05.c(13): warning:  #177-D: variable "retry" was declared but never referenced
+        u8 retry=10,t;                   
+..\HARDWARE\HC05\hc05.c(13): warning:  #177-D: variable "t" was declared but never referenced
+        u8 retry=10,t;                   
+..\HARDWARE\HC05\hc05.c(14): warning:  #177-D: variable "temp" was declared but never referenced
+        u8 temp=1;
+..\HARDWARE\HC05\hc05.c(161): warning:  #1-D: last line of file ends without a newline
+  }
+..\HARDWARE\HC05\hc05.c: 4 warnings, 0 errors
+compiling usart3.c...
+..\HARDWARE\USART3\usart3.c(111): warning:  #1-D: last line of file ends without a newline
+  }
+..\HARDWARE\USART3\usart3.c: 1 warning, 0 errors
+compiling timer.c...
+compiling bcomponent.c...
+..\HARDWARE\BCOMPONENT\bcomponent.c(51): warning:  #1-D: last line of file ends without a newline
+  }
+..\HARDWARE\BCOMPONENT\bcomponent.c: 1 warning, 0 errors
+compiling delay.c...
+..\SYSTEM\delay\delay.c(185): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\SYSTEM\delay\delay.c: 1 warning, 0 errors
+compiling sys.c...
+compiling usart.c...
+..\SYSTEM\usart\usart.c(123): warning:  #1-D: last line of file ends without a newline
+  #endif        
+..\SYSTEM\usart\usart.c: 1 warning, 0 errors
+assembling startup_stm32f40_41xxx.s...
+compiling misc.c...
+compiling stm32f4xx_gpio.c...
+compiling stm32f4xx_rcc.c...
+compiling stm32f4xx_syscfg.c...
+compiling stm32f4xx_usart.c...
+compiling stm32f4xx_tim.c...
+linking...
+Program Size: Code=13682 RO-data=978 RW-data=48 ZI-data=2632  
+FromELF: creating hex file...
+"..\OBJ\USART.axf" - 0 Error(s), 12 Warning(s).
+
+<h2>Collection of Component include folders:</h2>
+  D:\Qt\Serialport\USER\RTE
+  C:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.13.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include
+
+<h2>Collection of Component Files used:</h2>
+</pre>
+</body>
+</html>
