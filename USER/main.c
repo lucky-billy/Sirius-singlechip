@@ -89,18 +89,20 @@ int main(void)
 			if ( USART3_RX_BUF[0] == '8' ) {
 				// 发送信号给上位机，打开对准相机
 				u3_printf("Align !\r\n");
-				printf("8\r\n");
+				printf("8");
 			}
 			
 			// 测量
 			if ( USART3_RX_BUF[0] == '9' ) {
 				// 发送信号给上位机，启动测量
 				u3_printf("Measure !\r\n");
-				printf("9\r\n");
+				printf("9");
 			}
 			
+			/*
 			USART3_RX_BUF[len] = 0;							// 加结束符
 			printf("Bluetooth: %s\r\n", USART3_RX_BUF);		// 发送数据到上位机
+			*/
 			USART3_RX_STA = 0;
 		}
 		
