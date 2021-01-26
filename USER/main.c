@@ -37,63 +37,77 @@ int main(void)
 		{
 			u8 len = USART3_RX_STA & 0X7FFF;
 			
-			// 调焦左旋钮
+			// 调焦左旋钮 - 按下
 			if ( USART3_RX_BUF[0] == '1' ) {
 				FOCUS_O = 1;		// 调焦电机方向变为默认方向
 				FOCUS_T = 0;		// 调焦电机开始转动
-				delay_ms(1000);		// 转动时长
-				FOCUS_T = 1;		// 调焦电机停止转动
-					
-				u3_printf("Focus - reduce !\r\n");
-			}
-				
-			// 调焦右旋钮
-			if ( USART3_RX_BUF[0] == '2' ) {
-				FOCUS_O = 0;		// 调焦电机方向变为相反方向
-				FOCUS_T = 0;		// 调焦电机开始转动
-				delay_ms(1000);		// 转动时长
-				FOCUS_T = 1;		// 调焦电机停止转动
-				FOCUS_O = 1;		// 调焦电机方向变为默认方向
-					
-				u3_printf("Focus - increase !\r\n");
+				u3_printf("Focus - reduce pressed !\r\n");
 			}
 			
-			// 变倍左旋钮
-			if ( USART3_RX_BUF[0] == '3' ) {
-				ZOOM_O = 1;			// 变倍电机方向变为默认方向
-				ZOOM_T = 0;			// 变倍电机开始转动
-				delay_ms(1000);		// 转动时长
-				ZOOM_T = 1;			// 变倍电机停止转动
-					
-				u3_printf("Zoom - reduce !\r\n");
+			// 调焦左旋钮 - 抬起
+			if ( USART3_RX_BUF[0] == '2' ) {
+				FOCUS_O = 1;		// 调焦电机方向变为默认方向
+				FOCUS_T = 1;		// 调焦电机停止转动
+				u3_printf("Focus - reduce released !\r\n");
 			}
 				
-			//  变倍右旋钮
+			// 调焦右旋钮 - 按下
+			if ( USART3_RX_BUF[0] == '3' ) {
+				FOCUS_O = 0;		// 调焦电机方向变为相反方向
+				FOCUS_T = 0;		// 调焦电机开始转动
+				u3_printf("Focus - increase pressed !\r\n");
+			}
+			
+			// 调焦右旋钮 - 抬起
 			if ( USART3_RX_BUF[0] == '4' ) {
+				FOCUS_O = 1;		// 调焦电机方向变为默认方向
+				FOCUS_T = 1;		// 调焦电机停止转动
+				u3_printf("Focus - increase released !\r\n");
+			}
+			
+			// 变倍左旋钮 - 按下
+			if ( USART3_RX_BUF[0] == '5' ) {
+				ZOOM_O = 1;			// 变倍电机方向变为默认方向
+				ZOOM_T = 0;			// 变倍电机开始转动
+				u3_printf("Zoom - reduce pressed !\r\n");
+			}
+			
+			// 变倍左旋钮 - 抬起
+			if ( USART3_RX_BUF[0] == '6' ) {
+				ZOOM_O = 1;			// 变倍电机方向变为默认方向
+				ZOOM_T = 1;			// 变倍电机停止转动
+				u3_printf("Zoom - reduce released !\r\n");
+			}
+				
+			//  变倍右旋钮 - 按下
+			if ( USART3_RX_BUF[0] == '7' ) {
 				ZOOM_O = 0;			// 变倍电机方向变为相反方向
 				ZOOM_T = 0;			// 变倍电机开始转动
-				delay_ms(1000);		// 转动时长
-				ZOOM_T = 1;			// 变倍电机停止转动
+				u3_printf("Zoom - increase pressed !\r\n");
+			}
+			
+			//  变倍右旋钮 - 抬起
+			if ( USART3_RX_BUF[0] == '8' ) {
 				ZOOM_O = 1;			// 变倍电机方向变为默认方向
-					
-				u3_printf("Zoom - increase !\r\n");
+				ZOOM_T = 1;			// 变倍电机停止转动
+				u3_printf("Zoom - increase released !\r\n");
 			}
 
 			// 对比度
-			if ( USART3_RX_BUF[0] == '7' ) {
+			if ( USART3_RX_BUF[0] == 'a' ) {
 				// 先根据限位确定位置，再转到另一个位置
 				u3_printf("Contrast !\r\n");
 			}
 			
 			// 对准
-			if ( USART3_RX_BUF[0] == '8' ) {
+			if ( USART3_RX_BUF[0] == 'b' ) {
 				// 发送信号给上位机，打开对准相机
 				u3_printf("Align !\r\n");
 				printf("8");
 			}
 			
 			// 测量
-			if ( USART3_RX_BUF[0] == '9' ) {
+			if ( USART3_RX_BUF[0] == 'c' ) {
 				// 发送信号给上位机，启动测量
 				u3_printf("Measure !\r\n");
 				printf("9");
@@ -111,80 +125,107 @@ int main(void)
 		{
 			u8 len = USART_RX_STA & 0x3fff;	// 得到此次接收到的数据长度
 			
-			if ( USART_RX_BUF[0] == '1' )
+			if ( USART_RX_BUF[0] == 'a' )
 			{
 				FOCUS_O = 1;		// 调焦电机方向变为默认方向
 				FOCUS_T = 0;		// 调焦电机开始转动
-				delay_ms(1000);		// 转动时长
-				FOCUS_T = 1;		// 调焦电机停止转动
-				
-				printf("Focus - reduce !\r\n");
+				printf("Focus - reduce pressed !");
 			}
 			
-			if ( USART_RX_BUF[0] == '2' )
+			if ( USART_RX_BUF[0] == 'b' )
+			{
+				FOCUS_O = 1;		// 调焦电机方向变为默认方向
+				FOCUS_T = 1;		// 调焦电机停止转动
+				printf("Focus - reduce released !");
+			}
+			
+			if ( USART_RX_BUF[0] == 'c' )
 			{
 				FOCUS_O = 0;		// 调焦电机方向变为相反方向
 				FOCUS_T = 0;		// 调焦电机开始转动
-				delay_ms(1000);		// 转动时长
-				FOCUS_T = 1;		// 调焦电机停止转动
-				FOCUS_O = 1;		// 调焦电机方向变为默认方向
-				
-				printf("Focus - increase !\r\n");
+				printf("Focus - increase pressed !");
 			}
 			
-			if ( USART_RX_BUF[0] == '3' )
+			if ( USART_RX_BUF[0] == 'd' )
+			{
+				FOCUS_O = 1;		// 调焦电机方向变为默认方向
+				FOCUS_T = 1;		// 调焦电机停止转动
+				printf("Focus - increase released !");
+			}
+			
+			//------------------------------------------------------------------------------
+			
+			if ( USART_RX_BUF[0] == 'e' )
 			{
 				ZOOM_O = 1;			// 变倍电机方向变为默认方向
 				ZOOM_T = 0;			// 变倍电机开始转动
-				delay_ms(1000);		// 转动时长
-				ZOOM_T = 1;			// 变倍电机停止转动
-				
-				printf("Zoom - reduce !\r\n");
+				printf("Zoom - reduce pressed !");
 			}
 			
-			if ( USART_RX_BUF[0] == '4' )
+			if ( USART_RX_BUF[0] == 'f' )
+			{
+				ZOOM_O = 1;			// 变倍电机方向变为默认方向
+				ZOOM_T = 1;			// 变倍电机停止转动
+				printf("Zoom - reduce released !");
+			}
+			
+			if ( USART_RX_BUF[0] == 'g' )
 			{
 				ZOOM_O = 0;			// 变倍电机方向变为相反方向
 				ZOOM_T = 0;			// 变倍电机开始转动
-				delay_ms(1000);		// 转动时长
-				ZOOM_T = 1;			// 变倍电机停止转动
-				ZOOM_O = 1;			// 变倍电机方向变为默认方向
-				
-				printf("Zoom - increase !\r\n");
+				printf("Zoom - increase pressed !");
 			}
 			
-			if ( USART_RX_BUF[0] == '5' )
+			if ( USART_RX_BUF[0] == 'h' )
+			{
+				ZOOM_O = 1;			// 变倍电机方向变为默认方向
+				ZOOM_T = 1;			// 变倍电机停止转动
+				printf("Zoom - increase released !");
+			}
+			
+			//------------------------------------------------------------------------------
+			
+			if ( USART_RX_BUF[0] == 'i' )
 			{
 				BRIGHT_O = 1;		// 明亮度电机方向变为默认方向
 				BRIGHT_T = 0;		// 明亮度电机开始转动
-				delay_ms(1000);		// 转动时长
-				BRIGHT_T = 1;		// 明亮度电机停止转动
-				
-				printf("Bright - reduce !\r\n");
+				printf("Bright - reduce pressed !");
 			}
 			
-			if ( USART_RX_BUF[0] == '6' )
+			if ( USART_RX_BUF[0] == 'j' )
+			{
+				BRIGHT_O = 1;		// 明亮度电机方向变为默认方向
+				BRIGHT_T = 1;		// 明亮度电机停止转动
+				printf("Bright - reduce released !");
+			}
+			
+			if ( USART_RX_BUF[0] == 'k' )
 			{
 				BRIGHT_O = 0;		// 明亮度电机方向变为相反方向
 				BRIGHT_T = 0;		// 明亮度电机开始转动
-				delay_ms(1000);		// 转动时长
-				BRIGHT_T = 1;		// 明亮度电机停止转动
-				BRIGHT_O = 1;		// 明亮度电机方向变为默认方向
-				
-				printf("Bright - increase !\r\n");
+				printf("Bright - increase pressed !");
 			}
 			
-			if ( USART_RX_BUF[0] == '7' )
+			if ( USART_RX_BUF[0] == 'l' )
+			{
+				BRIGHT_O = 1;		// 明亮度电机方向变为默认方向
+				BRIGHT_T = 1;		// 明亮度电机停止转动
+				printf("Bright - increase released !");
+			}
+			
+			//------------------------------------------------------------------------------
+			
+			if ( USART_RX_BUF[0] == 'm' )
 			{
 				CONTRAST_O = 1;		// 对比度电机方向变为默认方向
 				CONTRAST_T = 0;		// 对比度电机开始转动
 				delay_ms(1000);		// 转动时长
 				CONTRAST_T = 1;		// 对比度电机停止转动
 				
-				printf("Contrast - reduce !\r\n");
+				printf("Contrast - reduce !");
 			}
 			
-			if ( USART_RX_BUF[0] == '8' )
+			if ( USART_RX_BUF[0] == 'n' )
 			{
 				CONTRAST_O = 0;		// 对比度电机方向变为相反方向
 				CONTRAST_T = 0;		// 对比度电机开始转动
@@ -192,7 +233,72 @@ int main(void)
 				CONTRAST_T = 1;		// 对比度电机停止转动
 				CONTRAST_O = 1;		// 对比度电机方向变为默认方向
 				
-				printf("Contrast - increase !\r\n");
+				printf("Contrast - increase !");
+			}
+			
+			//------------------------------------------------------------------------------
+			
+			if ( USART_RX_BUF[0] == '1' )
+			{
+				BRIGHT_O = 0;		// 明亮度电机方向变为相反方向
+				BRIGHT_T = 0;		// 明亮度电机开始转动
+				delay_ms(500);
+				BRIGHT_T = 1;		// 明亮度电机停止转动
+				BRIGHT_O = 1;		// 明亮度电机方向变为默认方向
+				
+				printf("Bright - increase 1 !");
+			}
+			
+			if ( USART_RX_BUF[0] == '2' )
+			{
+				BRIGHT_O = 0;		// 明亮度电机方向变为相反方向
+				BRIGHT_T = 0;		// 明亮度电机开始转动
+				delay_ms(1000);
+				BRIGHT_T = 1;		// 明亮度电机停止转动
+				BRIGHT_O = 1;		// 明亮度电机方向变为默认方向
+				
+				printf("Bright - increase 2 !");
+			}
+			
+			if ( USART_RX_BUF[0] == '3' )
+			{
+				BRIGHT_O = 0;		// 明亮度电机方向变为相反方向
+				BRIGHT_T = 0;		// 明亮度电机开始转动
+				delay_ms(1500);
+				BRIGHT_T = 1;		// 明亮度电机停止转动
+				BRIGHT_O = 1;		// 明亮度电机方向变为默认方向
+				
+				printf("Bright - increase 3 !");
+			}
+			
+			if ( USART_RX_BUF[0] == '4' )
+			{
+				BRIGHT_O = 1;		// 明亮度电机方向变为默认方向
+				BRIGHT_T = 0;		// 明亮度电机开始转动
+				delay_ms(500);
+				BRIGHT_T = 1;		// 明亮度电机停止转动
+				
+				printf("Bright - reduce 1 !");
+			}
+			
+			if ( USART_RX_BUF[0] == '5' )
+			{
+				BRIGHT_O = 1;		// 明亮度电机方向变为默认方向
+				BRIGHT_T = 0;		// 明亮度电机开始转动
+				delay_ms(1000);
+				BRIGHT_T = 1;		// 明亮度电机停止转动
+				
+				printf("Bright - reduce 2 !");
+			}
+			
+			if ( USART_RX_BUF[0] == '6' )
+			{
+				BRIGHT_O = 1;		// 明亮度电机方向变为默认方向
+				BRIGHT_T = 0;		// 明亮度电机开始转动
+				delay_ms(1500);
+				BRIGHT_T = 1;		// 明亮度电机停止转动
+				
+				printf("Bright - reduce 3 !");
 			}
 			
 			/*
